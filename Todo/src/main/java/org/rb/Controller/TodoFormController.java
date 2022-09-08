@@ -15,6 +15,12 @@ public class TodoFormController {
 	@Autowired
 	private TodoItemRepo repo;
 	
+	
+	@GetMapping("/create-todo")
+	public String createItem(TodoItem item) {
+		return "add-todo-item";
+		
+	}
 	@GetMapping("/edit/{id}")
 	public String showUpForm(@PathVariable("id") long id,Model model) {
 		TodoItem todoItem= repo.findById(id)

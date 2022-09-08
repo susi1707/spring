@@ -28,6 +28,17 @@ public class TodoController {
 		modelandview.addObject("todoItems", repo.findAll());
 		return modelandview;
 	} 
+	
+	@PostMapping("/todo")
+	public String addTodo(@Valid TodoItem item, BindingResult result,Model model) {
+		if(result.hasErrors()) {
+			return "add-todo-item";
+		}
+		item.setCreatedDate(Instant.now());
+		item.setModifiedDate(Instant.now());
+		repo.save(item);
+		return "redirect:/";
+	}
 	@PostMapping("/todo/{id}")
 	public String updateItem(@PathVariable("id") long id ,@Valid TodoItem todoItem,BindingResult bindingResult, Model model)
 	{
