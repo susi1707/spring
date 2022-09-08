@@ -1,6 +1,7 @@
 package org.rb.Controller;
 
 import java.time.Instant;
+import java.time.ZoneId;
 
 import javax.validation.Valid;
 
@@ -26,7 +27,9 @@ public class TodoController {
 	public ModelAndView index() {
 		ModelAndView modelandview = new ModelAndView("index");
 		modelandview.addObject("todoItems", repo.findAll());
-		return modelandview;
+		modelandview.addObject("today", Instant.now().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek());
+        return modelandview;
+		
 	} 
 	
 	@PostMapping("/todo")
