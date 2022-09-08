@@ -17,7 +17,10 @@
 				<div class="form-group">
 					<label for="description">Description</label> <input
 						class="form-control" type="text" th:field="*{description}"
-						id="description" placeholder="Add a description">
+						id="description" placeholder="Add a description"> 
+						<span
+						th:if="${#fields.hasErrors('description')}"
+						th:errors="*{description}"></span>
 
 				</div>
 				<div class="checkbox">
